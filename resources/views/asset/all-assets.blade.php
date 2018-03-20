@@ -16,6 +16,7 @@
                 <th>availability</th>
                 <th>Bookings</th>
                 <th>status</th>
+                <th>Allocate</th>
                 </thead>
                 @foreach( $data as $asset => $value)
                 <tr>
@@ -25,6 +26,7 @@
                 <td>{{ $value->availability }}</td>
                 <td>{{ $value->bookings }}</td>
                 <td>{{ $value->status }}</td>
+                <td><a href="#" class="btn btn-warning" > Allocate</a></td>
                 </tr>
 
                 @endforeach

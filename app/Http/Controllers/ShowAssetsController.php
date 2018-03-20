@@ -17,4 +17,16 @@ class ShowAssetsController extends Controller
 
         return view('asset.all-assets', ['data' => $data] );
     }
+
+    public function showAsset ($asset_id=4)
+    {
+        //select asset here 
+        $asset = DB::table('asset_models')
+
+        ->where('id', $asset_id)
+
+        ->first();
+        //dd($asset);
+        return view ('asset.allocate', ['asset' => $asset]);
+    }
 }
