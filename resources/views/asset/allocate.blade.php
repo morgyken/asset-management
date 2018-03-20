@@ -21,7 +21,7 @@
                 <div class="card-body">
                 <div class="col-md-5">{{ $asset -> name}} </div>
                 <div class="col-md-4">{{ $asset ->availability}} </div>  
-                <div class="col-md-6"><img src="" alt="..." > </div>
+                <div class="col-md-6"><img src="{{URL::asset('/storage/uploads/'.$asset->name.'/'.$asset->pic)}}" alt="..." > </div>
                 <div class="col-md-6">
                 <p> Bookings: {{ $asset-> bookings}}  </p>
                 <p> Descriptions: {{ $asset -> description}}  </p>
@@ -34,13 +34,21 @@
                 </div> 
                  <form type ="Post" action= "">
                         <div class ="form-group">
-                            <select class="form-control col-md-offset-4" name="allocate">
+                            <select class="form-control col-md-offset-4" name="username">
                             @foreach($users as $user)
                             <option value="{{ $user->name }}">{{ $user->name }}</option>
-
                             @endforeach
                                                        
                             </select> 
+                            <input type="hidden" value="{{ $asset->id}}" >
+
+                             <div class ="form-group">
+                                Start Date <input name ="startdate" class="form-control" >
+                            </div>
+
+                            <div class ="form-group">
+                                End Date <input name ="enddate" class="form-control" >
+                            </div>
 
                         </div>
                         <div class ="form-group">

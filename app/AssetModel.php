@@ -13,7 +13,7 @@ class AssetModel extends Model
     private $database = 'asset_models';
     
     protected $fillable = [
-        'name', 'description', 'availability', 'bookings', 'status', 'category'
+        'name', 'description', 'availability', 'bookings', 'status', 'category', 'pic'
     ];
 
     /**

@@ -26,7 +26,7 @@
                 <td>{{ $value->availability }}</td>
                 <td>{{ $value->bookings }}</td>
                 <td>{{ $value->status }}</td>
-                <td><a href="#" class="btn btn-warning" > Allocate</a></td>
+                <td><a href="{{ route('show.asset', ['id'=>$value->id ]) }}" class="btn btn-warning" > Allocate</a></td>
                 </tr>
 
                 @endforeach

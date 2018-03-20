@@ -45,7 +45,8 @@ class RegisterAssetController extends Controller
         }
 
         DB::table('asset_models')->insert(
-            [        
+            [    
+            'pic'      =>$name,   
             'name'        => $request['name'],
             'description' => $request['description'],
             'availability' => $request['availability'],

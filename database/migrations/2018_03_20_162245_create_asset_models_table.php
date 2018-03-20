@@ -20,7 +20,7 @@ class CreateAssetModelsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('availability');
-           
+            $table->string('pic');
             $table->string('bookings');
              $table->string('category');
             $table->string('status');
