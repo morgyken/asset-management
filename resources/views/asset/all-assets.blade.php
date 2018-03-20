@@ -13,18 +13,18 @@
                 <th>Asset ID</th>
                 <th>Name </th>
                 <th>Details </th>
-                <th> availability</th>
+                <th>availability</th>
                 <th>Bookings</th>
                 <th>status</th>
                 </thead>
                 @foreach( $data as $asset => $value)
                 <tr>
-                <td>Asset ID</td>
-                <td>Name </td>
-                <td>Details </td>
-                <td> availability</td>
-                <td>Bookings</td>
-                <td>status</td>
+                <td>{{ $value->id }}</td>
+                <td>{{ $value->name }} </td>
+                <td>{{ $value->description }} </td>
+                <td>{{ $value->availability }}</td>
+                <td>{{ $value->bookings }}</td>
+                <td>{{ $value->status }}</td>
                 </tr>
 
                 @endforeach

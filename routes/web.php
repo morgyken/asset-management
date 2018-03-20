@@ -28,7 +28,7 @@ Route::get('/all-assets', 'ShowAssetsController@index')->name('all.assets');
 /*
 *  REgister Assets 
 */
-Route::get('/register-asset', 'RegisterAssetController@ShowAssetRegister')->name('register.asset');
+Route::get('/register-asset', 'RegisterAssetController@ShowAssetRegister')->name('get.asset');
 
 
 /*

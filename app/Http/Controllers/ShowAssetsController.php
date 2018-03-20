@@ -13,7 +13,7 @@ class ShowAssetsController extends Controller
     {
         $data = DB::table('asset_models')->get();
 
-        dd($data);
+       //Show all assets
 
         return view('asset.all-assets', ['data' => $data] );
     }

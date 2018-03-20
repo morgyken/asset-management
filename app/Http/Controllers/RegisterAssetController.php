@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 
 use DB;
 
+use Illuminate\Support\Facades\Input;
+
 
 class RegisterAssetController extends Controller
 {
-    
+    protected $redirectTo = '/register-asset';
+
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,8 +27,24 @@ class RegisterAssetController extends Controller
 
     protected function RegisterAsset(Request $request)
     {        
+    
+        $file = Input::file('pic');
 
-    DB::table('asset_models')->insert(
+
+        $path=  public_path().'/storage/uploads/'.$request->name;
+
+
+        $dest = $path;
+        
+        foreach ($file as $files){
+
+        $name =  $files->getClientOriginalName();
+
+        $files->move($dest, $name);
+
+        }
+
+        DB::table('asset_models')->insert(
             [        
             'name'        => $request['name'],
             'description' => $request['description'],
@@ -36,6 +56,8 @@ class RegisterAssetController extends Controller
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
 
          ]);
+
+         return redirect()->route('get.asset');
         
     }
 

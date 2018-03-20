@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register an Asset') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register.asset') }}">
+                    <form method="POST" action="{{ route('register.asset') }}" enctype="multipart/form-data"/>
                         @csrf
 
                         <div class="form-group row">
@@ -21,6 +21,23 @@
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="pic" class="col-md-4 col-form-label text-md-right">
+                            {{ __('Asset Picture') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="pic" type="file" class="form-control{{ 
+                                    $errors->has('pic') ? ' is-invalid' : '' }}" 
+                                name="pic[]" value="{{ old('pic') }}" required>
+
+                                @if ($errors->has('description'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('pic') }}</strong>
                                     </span>
                                 @endif
                             </div>
