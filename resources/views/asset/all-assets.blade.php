@@ -33,7 +33,7 @@
                 @else           
 
 
-                <td><a href="{{ route('apply.alloc', ['id'=>$value->id ]) }}" class="btn btn-warning" > Apply</a></td>
+                <td><a href="{{ route('show.asset', ['id'=>$value->id ]) }}" class="btn btn-warning" > Apply</a></td>
 
                 @endif
             </tr>

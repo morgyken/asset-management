@@ -28,7 +28,7 @@ class ShowAssetsController extends Controller
         ->first();
         //dd($asset);
 
-        $users = DB::table('users')->select('name')->get();
+        $users = DB::table('')->select('name')->get();
 
         return view ('asset.allocate', ['asset' => $asset, 'users'=> $users]);
     }

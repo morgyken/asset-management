@@ -14,9 +14,9 @@ class AssetApplicationController extends Controller
      public function Application(Request $request){
      	//Increase the number of booking 
 
-     	$bookings = DB::table('asset_models')->select('bookings')->first();
+     	$booking = DB::table('asset_models')->select('bookings','serial')->first();
 
-     	$bookings = $bookings + 1;
+     	$bookings = $booking->bookings + 1;
 
 
      	DB::table('asset_models')->where('id', $request->asset_id)
@@ -34,14 +34,17 @@ class AssetApplicationController extends Controller
                     ->update(
                         [
                         	                    
-                            'username'  => $request->username,
-                            'assetid'   => $request->asset_id,
-                            'startdate' => $request->startdate,
-                            'enddate'   => $request->enddate,                   
+                            'username'  => 	$request->username,
+                            'serial'   => 	$booking->serial,
+                            'startdate' => 	$request->startdate,
+                            'enddate'   => 	$request->enddate,                   
 
                             'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
                         ]
                     );
+
+               return redirect()->route('show.asset', ['id'=> $request->asset_id])
+        ->with('status', 'Allocation was Successful!');
 
 
     }

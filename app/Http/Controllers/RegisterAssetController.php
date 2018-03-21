@@ -15,7 +15,7 @@ class RegisterAssetController extends Controller
 
     protected $redirectTo = '/register-asset';
 
-    prtected $serial = 0;
+    protected $serial = 0;
 
 
     public function __construct()
@@ -51,10 +51,7 @@ class RegisterAssetController extends Controller
 
         // register the data to database
 
-        'bookings'    => $request['bookings'],
-            'status'     => $request['status'],
-
-
+        
         DB::table('asset_models')->insert(
             [    
             'serial'    => $serial,  
@@ -68,15 +65,15 @@ class RegisterAssetController extends Controller
 
          ]);
 
-        DB::table('allocate_models')->insert(
+        DB::table('lease_models')->insert(
             [    
-           'serial'    => $serial,
+            'serial'    => $serial,
             'created_at' =>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
 
          ]);
 
-         return redirect()->route('get.asset');
+         return redirect()->route('get.asset')with('status', 'Registration Successful!');;
         
     }
 

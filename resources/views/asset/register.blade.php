@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Register an Asset') }}</div>
 
@@ -47,8 +47,9 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <input id="description" type="" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" 
-                                name="description" value="{{ old('descrition') }}" required>
+                                <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" 
+                                name="description" value="{{ old('descrition') }}" required> 
+                            </textarea> 
 
                                 @if ($errors->has('description'))
                                     <span class="invalid-feedback">
@@ -74,21 +75,7 @@
                         </div>
 
 
-                        <div class="form-group row">
-                            <label for="bookings" class="col-md-4 col-form-label text-md-right">{{ __('Bookings') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="bookings" type="" 
-                                class="form-control{{ $errors->has('bookings') ? ' is-invalid' : '' }}" 
-                                name="bookings" required>
-
-                                @if ($errors->has('bookings'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('bookings') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
 
@@ -108,21 +95,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="status" type="" 
-                                class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" 
-                                name="status" required>
-
-                                @if ($errors->has('status'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('status') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                      
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

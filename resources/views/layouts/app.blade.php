@@ -38,6 +38,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @if(Auth::check())
+                        <li>
+                            <a class="nav-link" href="{{ route('all.assets') }}">{{ __('Assets') }}
+                            </a>
+                        </li>
+
+                         <li>
+                            <a class="nav-link" href="{{ route('get.asset') }}">{{ __('Register Assets') }}
+                            </a>
+                        </li>
+
+                        @endif
 
                     </ul>
 

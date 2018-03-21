@@ -17,10 +17,10 @@ class CreateLeaseModelsTable extends Migration
                 $table->increments('id');
                 $table->timestamps();
                 $table->rememberToken();
-                $table->string('username');
-                $table->string('assetid');
-                $table->string('startdate');
-                $table->string('enddate');
+                $table->string('username')->nullable();
+                $table->string('assetid')->nullable();
+                $table->string('startdate') ->nullable();
+                $table->string('enddate') ->nullable();
         });
     }
 
