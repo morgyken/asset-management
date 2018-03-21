@@ -30,8 +30,16 @@ class AllocateAssetsController extends Controller
             ->first();
 
         ///When allocating reduce availability by one
+        if($availability->availability == 0)
+        {
+             $availability = 0;
+        }
 
-        $availability = $availability -1;
+        else 
+        {
+               $availability = $availability->availability -1;
+        }
+     
 
 
             DB::table('lease_models')->where('id', $request->asset_id)
@@ -50,15 +58,17 @@ class AllocateAssetsController extends Controller
             DB::table('asset_models')->where('id', $request->asset_id)
                     ->update(
                         [
-                            'status' => 'allocated', 
+                            'status' => 1, 
                             'availability' => $availability,
 
                             'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
                         ]
-                    );
+            );
 
+            return redirect()->route('show.asset', ['id'=> $request->asset_id])
+        ->with('status', 'Allocation was Successful!');
 
     }
 
-   
+
 }

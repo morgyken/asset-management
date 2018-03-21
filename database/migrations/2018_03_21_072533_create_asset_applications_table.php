@@ -16,6 +16,10 @@ class CreateAssetApplicationsTable extends Migration
         Schema::create('asset_applications', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('serial');
+            $table->string('username');
+            $table->string('startdate');
+            $table->string('enddate');
         });
     }
 
