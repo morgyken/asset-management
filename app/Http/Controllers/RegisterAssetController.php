@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Input;
 
 class RegisterAssetController extends Controller
 {
+    
+
     protected $redirectTo = '/register-asset';
+
+    prtected $serial = 0;
 
 
     public function __construct()
@@ -30,6 +34,7 @@ class RegisterAssetController extends Controller
     
         $file = Input::file('pic');
 
+        $serial = rand(99999,999999);
 
         $path=  public_path().'/storage/uploads/'.$request->name;
 
@@ -44,15 +49,28 @@ class RegisterAssetController extends Controller
 
         }
 
+        // register the data to database
+
+        'bookings'    => $request['bookings'],
+            'status'     => $request['status'],
+
+
         DB::table('asset_models')->insert(
             [    
-            'pic'      =>$name,   
+            'serial'    => $serial,  
+            'pic'       =>$name,   
             'name'        => $request['name'],
             'description' => $request['description'],
             'availability' => $request['availability'],
-            'bookings'    => $request['bookings'],
-            'status'     => $request['status'],
             'category' => $request['category'],
+            'created_at' =>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+
+         ]);
+
+        DB::table('allocate_models')->insert(
+            [    
+           'serial'    => $serial,
             'created_at' =>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
 

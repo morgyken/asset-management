@@ -41,3 +41,26 @@ Route::post('/post-register', 'RegisterAssetController@RegisterAsset')->name('re
 *  Register Assets 
 */
 Route::get('/allocate-asset/{id}', 'ShowAssetsController@showAsset')->name('show.asset');
+
+
+
+/*
+*  Post Allocation
+*/
+Route::post('/post-asset/', 'AllocateAssetsController@AllocateAsset')
+
+->name('post.asset.allocate');
+
+
+
+
+/*
+*  Post Allocation
+*/
+Route::post('/apply-alloc/', 'AllocateAssetsController@Application')
+
+->name('apply.alloc');
+
+
+
+

@@ -26,8 +26,18 @@
                 <td>{{ $value->availability }}</td>
                 <td>{{ $value->bookings }}</td>
                 <td>{{ $value->status }}</td>
+                @if(Auth::User->usertype== 'admin')
+               
                 <td><a href="{{ route('show.asset', ['id'=>$value->id ]) }}" class="btn btn-warning" > Allocate</a></td>
+
+                @endif
                 </tr>
+
+                @if(Auth::user()->usertype =='user 1')
+
+                <td><a href="{{ route('apply.alloc', ['id'=>$value->id ]) }}" class="btn btn-warning" > Apply</a></td>
+
+                @endif
 
                 @endforeach
 

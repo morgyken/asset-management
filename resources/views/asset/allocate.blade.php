@@ -25,14 +25,10 @@
                 <div class="col-md-6">
                 <p> Bookings: {{ $asset-> bookings}}  </p>
                 <p> Descriptions: {{ $asset -> description}}  </p>
-                <p> Status:  {{$asset -> status}} </p>              
-
-               
-                  
-
+                <p> Status:  {{$asset -> status}} </p>           
                 
                 </div> 
-                 <form type ="Post" action= "">
+                 <form method ="post" action= "{{ route('post.asset.allocate') }}">
                         <div class ="form-group">
                             <select class="form-control col-md-offset-4" name="username">
                             @foreach($users as $user)
@@ -40,7 +36,7 @@
                             @endforeach
                                                        
                             </select> 
-                            <input type="hidden" value="{{ $asset->id}}" >
+                            <input type="hidden" value="{{ $asset->id}}" name="asset_id" >
 
                              <div class ="form-group">
                                 Start Date <input name ="startdate" class="form-control" >
@@ -53,8 +49,13 @@
                         </div>
                         <div class ="form-group">
                             
-                            <input type="button" value="Allocate the Asset" 
-                            class="btn btn-primary">
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Allocate Asset') }}
+                                </button>
+                            </div>
+                        </div>
                         </div> 
                 </form>                              
 

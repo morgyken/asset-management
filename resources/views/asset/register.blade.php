@@ -59,7 +59,7 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label for="availablity" class="col-md-4 col-form-label text-md-right">{{ __('Availablity') }}</label>
+                            <label for="availablity" class="col-md-4 col-form-label text-md-right">{{ __('Number Available') }}</label>
 
                             <div class="col-md-6">
                                 <input id="availablity" type="text" class="form-control{{ $errors->has('availablity') ? ' is-invalid' : '' }}" 

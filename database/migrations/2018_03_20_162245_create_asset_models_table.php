@@ -18,12 +18,13 @@ class CreateAssetModelsTable extends Migration
             $table->timestamps();
             $table->rememberToken();
             $table->string('name');
+            $table->string('serial');
             $table->string('description');
-            $table->string('availability');
+            $table->integer('availability');
             $table->string('pic');
-            $table->string('bookings');
-             $table->string('category');
-            $table->string('status');
+            $table->integer('bookings');
+            $table->string('category');
+            $table->integer('status');
 
 
         });
