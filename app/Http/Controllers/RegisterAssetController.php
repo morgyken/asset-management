@@ -11,12 +11,9 @@ use Illuminate\Support\Facades\Input;
 
 class RegisterAssetController extends Controller
 {
-    
-
     protected $redirectTo = '/register-asset';
 
     protected $serial = 0;
-
 
     public function __construct()
     {
@@ -73,7 +70,7 @@ class RegisterAssetController extends Controller
 
          ]);
 
-         return redirect()->route('get.asset')with('status', 'Registration Successful!');;
+         return redirect()->route('get.asset')->with('status', 'Registration Successful!');;
         
     }
 

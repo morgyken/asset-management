@@ -49,8 +49,6 @@ Route::post('/post-asset/', 'AllocateAssetsController@AllocateAsset')
 ->name('asset.allocate');
 
 
-
-
 /*
 *  Post Allocation
 */
@@ -58,6 +56,12 @@ Route::post('/apply-alloc/', 'AssetApplicationController@Application')
 
 ->name('apply.alloc');
 
+/*
+*  Post Allocation
+*/
+Route::get('/allocations/', 'ShowAssetsController@showAllocations')
+
+		->name('allocations');
 
 
 

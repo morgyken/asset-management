@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-11">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -14,8 +14,12 @@
                     </div>
                     <div class="col-md-6">
                         <h1> View Assets  </h1>
-                    </div>
+                    </div>                    
                     
+                    </div>
+
+                    <div class="row">
+                        @include('asset.all-assets-table')
                     </div>
                 </div>
             </div>

@@ -6,8 +6,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Register an Asset') }}</div>
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
 
                 <div class="card-body">
+
                     <form method="POST" action="{{ route('register.asset') }}" enctype="multipart/form-data"/>
                         @csrf
 

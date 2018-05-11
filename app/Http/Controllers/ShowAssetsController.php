@@ -25,11 +25,36 @@ class ShowAssetsController extends Controller
 
         ->where('id', $asset_id)
 
-        ->first();
-        //dd($asset);
+        ->first();  
 
-        $users = DB::table('')->select('name')->get();
+
+        //show names of applicants 
+
+        $users = DB::table('asset_applications')
+
+            ->select('username')
+
+            ->where('serial', $asset->serial)
+
+            ->get();
+
+        //$users = (array) $users;
 
         return view ('asset.allocate', ['asset' => $asset, 'users'=> $users]);
+    }
+
+    //show allocations 
+
+    public function showAllocations()
+    {
+
+        $data = DB::table('asset_models')
+            ->join('lease_models', 'asset_models.serial', '=', 'lease_models.serial')
+            ->where('lease_models.serial', '!=', null)
+            ->get();
+
+       //Show all assets
+
+        return view('asset.allocations12', ['data' => $data] );
     }
 }

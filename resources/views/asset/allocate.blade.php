@@ -10,18 +10,18 @@
     opacity: 0;
   }
 
+
 </style>
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-12" >
             <div class="card" id="app">
 
                 @if(Auth::user()->usertype=='admin')
                 <div class="card-header">{{ __('All Assets') }}</div>
                 @else
-                <div class="card-header">{{ __('Make Application') }}</div>
-                    
+                <div class="card-header">{{ __('Make Application') }}</div>                  
 
                 @endif
 
@@ -34,7 +34,7 @@
                 <div class="card-body">
                 <div class="col-md-5"><h3>Asset Name: {{ $asset  -> name}} </h3> </div>
                 <div class="col-md-4">Units Available: {{ $asset ->availability}} </div>  
-                <div class="col-md-6"><img src="{{URL::asset('/storage/uploads/'.$asset->name.'/'.$asset->pic)}}" alt="..." > </div>
+                <div class="col-md-6"><img src="{{URL::asset('/storage/uploads/'.$asset->name.'/'.$asset->pic)}}" alt="..." style="max-width: 900px"  > </div>
                 <div class="col-md-6">
                 <p> Bookings: {{ $asset-> bookings}}  </p>
                 <p> Descriptions: {{ $asset -> description}}  </p>
@@ -57,14 +57,25 @@
 
              
                         <div class ="form-group">
+
+                            @if(Auth::user()->usertype == 'admin')
+                          
+                            @if($users==null)
+                            <h3> There are no current applicant for this asset</h3>
+                            @else
                             <select class="form-control col-md-offset-4" name="username">
                             @foreach($users as $user)
-                            <option value="{{ $user->name }}">{{ $user->name }}</option>
+                            <option value="{{ $user->username }}">{{ $user->username }}</option>
                             @endforeach
-
-
-                                                       
                             </select> 
+                            @endif
+
+                            @else
+                                <input type="hidden" value="{{Auth::user()->name}}" name="username" >
+
+                            @endif
+                                                       
+                            
                             <input type="hidden" value="{{ $asset->id}}" name="asset_id" >
 
                              <div class ="form-group">
@@ -84,7 +95,7 @@
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
 
-                                     @if(Auth::user()->usertype=='admin')
+                                    @if(Auth::user()->usertype=='admin')
                                      {{ __('Allocate Asset') }}
                                     @else
                                       {{ __('Make Applications') }}

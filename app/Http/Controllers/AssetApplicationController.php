@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use DB;
+
+use Auth;
+
 use Illuminate\Http\Request;
 
 class AssetApplicationController extends Controller
@@ -11,15 +14,30 @@ class AssetApplicationController extends Controller
 	private $bookings = 0;
 
 
-     public function Application(Request $request){
+    public function Application(Request $request){
      	//Increase the number of booking 
 
-     	$booking = DB::table('asset_models')->select('bookings','serial')->first();
+     	$booking = DB::table('asset_models')->select('bookings','serial')
+
+     	->where('id', $request->asset_id)
+
+     	->first();
 
      	$bookings = $booking->bookings + 1;
 
 
-     	DB::table('asset_models')->where('id', $request->asset_id)
+     	//check if they have booked the same item
+
+     	$data = DB::table('asset_applications')
+
+     			->where('serial', $booking->serial)
+
+     			->first();
+
+
+		if($data == null)
+		{
+			DB::table('asset_models')->where('id', $request->asset_id)
                     ->update(
                         [
                             'bookings' => $bookings, 
@@ -27,25 +45,36 @@ class AssetApplicationController extends Controller
                         ]
                     );
 
+
+        
      	//Record the booking in the database
 
 
-            DB::table('asset_applications')->where('id', $request->asset_id)
-                    ->update(
+            $book = DB::table('asset_applications')->insert(
+                    
                         [
                         	                    
-                            'username'  => 	$request->username,
-                            'serial'   => 	$booking->serial,
-                            'startdate' => 	$request->startdate,
-                            'enddate'   => 	$request->enddate,                   
-
-                            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+                            'username'  	=> 	$request->username,
+                            'serial'   		=> 	$booking->serial,
+                            'startdate' 	=> 	$request->startdate,
+                            'userid'		=>   Auth::user()->id,
+                            'enddate'   	=> 	$request->enddate,                   
+                            'updated_at' 	=> \Carbon\Carbon::now()->toDateTimeString()
                         ]
                     );
 
-               return redirect()->route('show.asset', ['id'=> $request->asset_id])
+             return redirect()->route('show.asset', ['id'=> $request->asset_id])
         ->with('status', 'Allocation was Successful!');
+		}
 
+		else
+		{
+		//return the page to show that they have already applied to the system
 
+		return redirect()->route('show.asset', ['id'=> $request->asset_id])
+        ->with('status', 'You have already applied for this asset!');
+		
+		}
+        
     }
 }

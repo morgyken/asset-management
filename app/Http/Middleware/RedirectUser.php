@@ -6,7 +6,7 @@ use Closure;
 
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class RedirectUser
 {
     /**
      * Handle an incoming request.
@@ -18,8 +18,9 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+        if (Auth::User()->usertype != 'admin') {
+
+            return redirect()->route('all.assets');
         }
 
         return $next($request);

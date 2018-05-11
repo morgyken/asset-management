@@ -1,0 +1,37 @@
+@extends('layouts.app')
+
+@section('content')
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js" type="text/javascript"></script>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card" id="app">
+                <div class="card-header">{{ __('All Assets') }}</div>
+
+                <div class="card-body">
+                <div class="col-md-5">{{ $asset -> name}} </div>
+                <div class="col-md-4">{{ $asset ->availability}} </div>  
+                <div class="col-md-6"><img src="" alt="..." > </div>
+                <div class="col-md-6">
+                <p> Bookings: {{ $asset-> bookings}}  </p>
+                <p> Descriptions: {{ $asset -> description}}  </p>
+                <p> Status:  {{$asset -> status}} </p>
+
+          
+
+                <button ng-click="hideShow=(hideShow ? false : true)">Allocate this asset </button>
+
+                <div ng-if="hideShow">hide and show content ...</div>  
+
+
+                 </div>             
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
